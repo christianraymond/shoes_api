@@ -21,17 +21,20 @@ app.set('view engine', 'handlebars');
 app.get('/', function(req, res){
   res.render('home')
 });
+
 //create an GET route that list all shoes in stock.
-app.get('/shoes', shoesRoute.allTheStocks);
-app.post('/shoes', shoesRoute.allBrands);
-
-app.get('/shoe/brand', shoesRoute.shoesIntheDatabase);
-app.post('shoes/brand', shoesRoute.shoesIntheDatabase)
-
-app.use(function(req, res, next){
-  console.log("Hello, my favorite color is", req.query.color);
-  next();
-});
+app.get('/shoes', shoesRoute.displayAllBrandFunc);
+//create a POST route that allow to create new brand in the database.
+app.post('/shoes', shoesRoute.createBrands);
+//create a GET route that list all shoes for a given brand.
+app.get('/shoes/brand/:brandName', shoesRoute.listSpecificBrandShoes);
+//create a GET route that list all shoes for a given size.
+app.get('/shoes/size/:brandSize', shoesRoute.listSpecificBrandSize);
+//create a GET route that list all shoes for a given brand and size.
+app.get('/shoes/brand/:brandName/size/:brandSize', shoesRoute.listSpecificBrandAndSize);
+//create a POST route that update the stock levels when a shoe is sold.
+// app.get('/shoes/sold/:id', shoesRoute.findOneAndUpdate);
+app.post('/shoes/sold/:id', shoesRoute.findOneAndUpdate);
 
 const port = process.env.PORT || 3000;
 app.listen(port, function(){

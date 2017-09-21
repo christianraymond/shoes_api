@@ -13,6 +13,7 @@ mongoose.connect(mongoURL, {
 });
   const Schema = mongoose.Schema;
   const shoesModels = new Schema({
+    // id: String,
     brand: String,
     color: String,
     size: Number,

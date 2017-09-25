@@ -33,8 +33,9 @@ app.get('/shoes/size/:brandSize', shoesRoute.listSpecificBrandSize);
 //create a GET route that list all shoes for a given brand and size.
 app.get('/shoes/brand/:brandName/size/:brandSize', shoesRoute.listSpecificBrandAndSize);
 //create a POST route that update the stock levels when a shoe is sold.
-// app.get('/shoes/sold/:id', shoesRoute.findOneAndUpdate);
 app.post('/shoes/sold/:id', shoesRoute.findOneAndUpdate);
+//create a POST route that updates the stock whenever the shoe is added, stock should increase.
+app.post('/shoe/addBrand/:id', shoesRoute.findOneAndEcrease);
 
 const port = process.env.PORT || 3000;
 app.listen(port, function(){

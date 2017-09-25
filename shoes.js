@@ -80,12 +80,29 @@ module.exports = function(models) {
     })
   }
 
+  function findOneAndEcrease(req, res, next) {
+    const id = req.params.id;
+    const in_stock = req.body.in_stock
+    models.findOneAndEcrease({
+      _id: id
+    }, {
+      $inc: {
+        in_stock: in_stock
+      }
+    }, function(err, addBrand) {
+      if (err) {
+        return next(err)
+      }
+      res.json(addedBrand)
+    })
+  }
   return {
     createBrands,
     displayAllBrandFunc,
     listSpecificBrandShoes,
     listSpecificBrandSize,
     listSpecificBrandAndSize,
-    findOneAndUpdate
+    findOneAndUpdate,
+    findOneAndEcrease
   }
 }

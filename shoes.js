@@ -65,37 +65,38 @@ module.exports = function(models) {
 
   function findOneAndUpdate(req, res, next) {
     const id = req.params.id;
-    const in_stock = req.body.in_stock;
+    const amount = req.params.amount;
     models.findOneAndUpdate({
       _id: id
     }, {
       $inc: {
-        in_stock: -in_stock
+        in_stock: -amount
       }
-    }, function(err, removedBrand) {
+    }, function(err, result) {
       if (err) {
         return next(err)
       }
-      res.json(removedBrand)
+      res.send(result)
     })
   }
 
-  function findOneAndEcrease(req, res, next) {
+  function addNewShoeToStock(req, res, next) {
     const id = req.params.id;
-    const in_stock = req.body.in_stock
-    models.findOneAndEcrease({
+    const amount = req.params.amount;
+    models.findOneAndUpdate({
       _id: id
     }, {
       $inc: {
-        in_stock: in_stock
+        in_stock: amount
       }
-    }, function(err, addBrand) {
+    }, function(err, result) {
       if (err) {
         return next(err)
       }
-      res.json(addedBrand)
+      res.send(result)
     })
   }
+
   return {
     createBrands,
     displayAllBrandFunc,
@@ -103,6 +104,6 @@ module.exports = function(models) {
     listSpecificBrandSize,
     listSpecificBrandAndSize,
     findOneAndUpdate,
-    findOneAndEcrease
+    addNewShoeToStock
   }
 }

@@ -7,6 +7,7 @@ module.exports = function(models) {
       brand: newshoes.brand,
       color: newshoes.color,
       size: newshoes.size,
+      price: newshoes.price,
       in_stock: newshoes.in_stock
     }, function(err, result) {
       if (err) {

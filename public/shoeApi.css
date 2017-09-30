@@ -2,11 +2,6 @@ body{
   background-color: #281812;
 }
 
-.header{
-  text-align: center;
-  color: white;
-}
-
 table, td, th {
     border: 1px solid #ddd;
     text-align: center;
@@ -14,11 +9,12 @@ table, td, th {
 
 table {
     border-collapse: collapse;
-    width: 50%;
+    width: 30%;
+    float: right;
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px;
 }
 
 th {
@@ -26,6 +22,25 @@ th {
     color: white;
     text-align: center
 }
+
+.navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+    position: fixed;    /* Set the navbar to fixed position */
+    top: 2px; /* Position the navbar at the top of the page */
+    width: 100%;    /* Full width */
+}
+
+hr {
+    clear: both;
+    visibility: hidden;
+}
+
+.list-group-item {
+    padding: 1px;
+}
+
+
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;

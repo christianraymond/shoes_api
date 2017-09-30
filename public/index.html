@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Shoes-Api</title>
   <meta charset="utf-8">
@@ -12,7 +11,7 @@
   <script src="handlebars-v4.0.5.js"></script>
 </head>
 
-<body>
+<bodgy class="bg-warnib">
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -25,9 +24,8 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="#"><a href="https://christianraymond.github.io">Home</a></li>
-          <li class="#"><a href="https://christianraymond.github.io/shoes_catalogue">All available brands</a></li>
-          <li><a href="">Buy or order here</a></li>
+          <li class=""><a href="">Home</a></li>
+          <li class=""><a href="">All available brands</a></li>
           <li><a href="">Admin add stocks here</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -37,30 +35,80 @@
     </div>
   </nav>
   <div class="header">
-    <h2>SHOE API</h2></div>
+    <h2 class="text-center">SHOE API</h2></div>
+
   <script id="shoesTable" type="text/x-handlebars-template">
-    <table border="20" align="center">
+    <table class="table table-hover" align="center">
       <tbody>
-        <tr>
+        <tr class="bg-success">
           <th>Name</th>
           <th>Color</th>
           <th>Price</th>
           <th>Size</th>
           <th>Stock</th>
-          <tr>
-            {{#each allShoes}}
-            <tr>
-              <td>{{brand}}</td>
-              <td>{{color}}</td>
-              <td>R{{price}}</td>
-              <td>{{size}}</td>
-              <td>{{in_stock}}</td>
-            </tr>
-            {{/each}}
+        </tr>
+        {{#each Shoes}}
+        <tr>
+          <td>{{brand}}</td>
+          <td>{{color}}</td>
+          <td>R{{price}}</td>
+          <td>{{size}}</td>
+          <td>{{in_stock}}</td>
+        </tr>
+        {{/each}}
       </tbody>
     </table>
   </script>
-  <div id="showTable"></div>
   <script src="shoeApi.js" charset="utf-8"></script>
+
+  <div class="container">
+    <br><br>
+    <form class="form-horizontal col-lg-5 form-group" method="post">
+            <h3>Adding New Stocks</h3>
+          <br>
+          <!-- Brand -->
+          <div class=" row">
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="text" class="form-control input-sm" id="inputBrand" placeholder="Type brand here..." value="" required>
+            </div>
+
+            <div class=" col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="text" class="form-control input-sm" id="inputColor" placeholder="Type color here..." value="" required>
+            </div>
+          </div>
+          <br><br>
+          <!-- price -->
+          <div class="row">
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputPrice" placeholder="Type price here..." min="1" step="0.01" value="" required>
+            </div>
+            <!-- size -->
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputSize" placeholder="Type size here..." min="1" max="12" value="" required>
+            </div>
+          </div>
+          <br>
+          <!-- instock -->
+          <div class="row">
+            <!-- <label for="inputInstock" class="col-md-2 col-sm-3 col-xs-6 control-label">Instock</label> -->
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputInstock" placeholder="Type stock here..." min="1" value="">
+            </div>
+
+            <div class="col-lg-6 col-xs-6">
+              <button type="reset" class="btn btn-default btn-md" onClick="window.location.reload()">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-md" id="regBtn">Submit</button>
+            </div>
+          </div>
+    </form>
+    <br>
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-5" id="showTable"></div>
+
+  </div>
+
   <body>
+
 </html>

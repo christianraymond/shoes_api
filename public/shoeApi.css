@@ -22,7 +22,9 @@ th {
     color: white;
     text-align: center
 }
-
+h3 {
+  color: white;
+}
 .navbar {
     margin-bottom: 50px;
     border-radius: 0;

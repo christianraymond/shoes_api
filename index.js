@@ -27,7 +27,7 @@ app.engine('handlebars', exphds({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res){
-  res.render('home')
+  res.render('./index.html')
 });
 //create an GET route that list all shoes in stock.
 app.get('/shoes', shoesRoute.displayAllBrandFunc);

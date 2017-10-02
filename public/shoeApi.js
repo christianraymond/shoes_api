@@ -6,18 +6,24 @@ $(function() {
 
   //Add new brands to the database using POST.
   $("#addBtn").on("click", function() {
-    var brand = document.getElementById("inputBrand");
-    var color = document.getElementById("inputColor");
-    var size = document.getElementById("inputSize");
-    var instock = document.getElementById("inputInstock");
-    var price = document.getElementById("inputPrice");
+    var brand = document.getElementById("inputBrand").value;
+    var color = document.getElementById("inputColor").value;
+    var size = document.getElementById("inputSize").value;
+    var instock = document.getElementById("inputInstock").value;
+    var price = document.getElementById("inputPrice").value;
+
+
+    if(brand == null || brand.length == 0, color == null || color.length == 0, size == null || size.length == 0 || instock == null || instock.length == 0, price == null || price.length == 0) {
+      alert("Please fill all required fields")
+      return false;
+    }
 
     var stock = {
-      brand: brand.value,
-      color: color.value,
-      size: size.value,
-      in_stock: instock.value,
-      price: price.value,
+      brand: brand,
+      color: color,
+      size: size,
+      in_stock: instock,
+      price: price,
 
     }
     $.ajax({

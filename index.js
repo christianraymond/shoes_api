@@ -29,7 +29,6 @@ app.set('view engine', 'handlebars');
 app.get('/', function(req, res){
   res.render('home')
 });
-
 //create an GET route that list all shoes in stock.
 app.get('/shoes', shoesRoute.displayAllBrandFunc);
 //create a POST route that allow to create new brand in the database.

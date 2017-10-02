@@ -17,8 +17,8 @@ mongoose.connect(mongoURL, {
     brand: {type: String, require: true},
     color: {type: String, require: true},
     size: {type: Number, require: true},
-    price: {type: Number, require: true},
-    in_stock: {type: Number, require: true}
+    in_stock: {type: Number, require: true},
+    price: {type: Number, require: true}
 });
 
 const brands = mongoose.model('brands', shoesModels);

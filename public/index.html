@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Shoes-Api</title>
   <meta charset="utf-8">
+  <script-src 'self' http?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="shoeApi.css">
@@ -36,7 +36,7 @@
     </div>
   </nav>
   <div class="header">
-    <h3 class="text-center">SHOE API</h3></div>
+    <h2 class="text-center">SHOE API</h2></div>
 
   <script id="shoesTable" type="text/x-handlebars-template">
     <table class="table table-hover" align="center">
@@ -52,8 +52,8 @@
         <tr>
           <td>{{brand}}</td>
           <td>{{color}}</td>
-          <td>{{size}}</td>
           <td>R{{price}}</td>
+          <td>{{size}}</td>
           <td>{{in_stock}}</td>
         </tr>
         {{/each}}
@@ -64,41 +64,42 @@
   <div class="container">
     <br><br>
     <form class="form-horizontal col-lg-5 form-group" method="post">
-      <h4>Adding New Stocks</h4>
-      <!-- Brand -->
-      <div class=" row">
-        <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
-          <input type="text" class="form-control input-sm" id="inputBrand" placeholder="Type brand here..." value="" required>
-        </div>
+            <h3>Adding New Stocks</h3>
+          <br>
+          <!-- Brand -->
+          <div class=" row">
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="text" class="form-control input-sm" id="inputBrand" placeholder="Type brand here..." value="" required>
+            </div>
 
-        <div class=" col-lg-6 col-md-2 col-sm-3 col-xs-6">
-          <input type="text" class="form-control input-sm" id="inputColor" placeholder="Type color here..." value="" required>
-        </div>
-      </div>
-      <br><br>
-      <!-- price -->
-      <div class="row">
-        <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
-          <input type="number" class="form-control input-sm" id="inputPrice" placeholder="Type price here..." min="1" step="0.01" value="" required>
-        </div>
-        <!-- size -->
-        <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
-          <input type="number" class="form-control input-sm" id="inputSize" placeholder="Type size here..." min="1" max="12" value="" required>
-        </div>
-      </div>
-      <br>
-      <!-- instock -->
-      <div class="row">
-        <!-- <label for="inputInstock" class="col-md-2 col-sm-3 col-xs-6 control-label">Instock</label> -->
-        <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
-          <input type="number" class="form-control input-sm" id="inputInstock" placeholder="Type stock here..." min="1" value="">
-        </div>
+            <div class=" col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="text" class="form-control input-sm" id="inputColor" placeholder="Type color here..." value="" required>
+            </div>
+          </div>
+          <br><br>
+          <!-- price -->
+          <div class="row">
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputPrice" placeholder="Type price here..." min="1" step="0.01" value="" required>
+            </div>
+            <!-- size -->
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputSize" placeholder="Type size here..." min="1" max="12" value="" required>
+            </div>
+          </div>
+          <br>
+          <!-- instock -->
+          <div class="row">
+            <!-- <label for="inputInstock" class="col-md-2 col-sm-3 col-xs-6 control-label">Instock</label> -->
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+              <input type="number" class="form-control input-sm" id="inputInstock" placeholder="Type stock here..." min="1" value="">
+            </div>
 
-        <div class="col-lg-6 col-xs-6">
-          <button type="reset" class="btn btn-default btn-md" onClick="window.location.reload()">Cancel</button>
-          <button type="submit" class="btn btn-primary btn-md" id="addBtn">Submit</button>
-        </div>
-      </div>
+            <div class="col-lg-6 col-xs-6">
+              <button type="reset" class="btn btn-default btn-md" onClick="window.location.reload()">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-md" id="addBtn">Submit</button>
+            </div>
+          </div>
     </form>
     <br>
     <div class="col-lg-2">

@@ -8,7 +8,8 @@ module.exports = function(models) {
       color: newshoes.color,
       size: newshoes.size,
       price: newshoes.price,
-      in_stock: newshoes.in_stock
+      in_stock: newshoes.in_stock,
+      price: newshoes.price
     }, function(err, result) {
       if (err) {
         return next(err)

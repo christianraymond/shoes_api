@@ -5,13 +5,19 @@ $(function() {
   var showTable = document.getElementById("showTable");
 
   //Add new brands to the database using POST.
+$("#addBtn").on("click",function(){
+var brand = document.getElementById("inputBrand");
+var color = document.getElementById("inputColor");
+var size = document.getElementById("inputSize");
+var instock = document.getElementById("inputInstock");
+var price = document.getElementById("inputPrice");
 
-  $("#addBtn".onclick, function(){
     var stock = {
-      brand: $brand.val(),
-      color: $color.val(),
-      size: $size.val(),
-      instock: $in_stock.val()
+      brand: brand.value,
+      color: color.value,
+      size: size.value,
+      in_stock: instock.value,
+      price: price.value
     }
     $.ajax({
       type: "POST",
@@ -19,10 +25,12 @@ $(function() {
       dataType: "aplication/json",
       url: url,
       success: function(data){
-        console.log("New shoes has been successfully added!");
+        showTable.innerHTML = compiledTable({
+          shoes:  stock
+        })
       },
       error: function(error){
-        alert("I getting an error message!")
+        alert("You will see the result!!")
       }
     })
   });

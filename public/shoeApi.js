@@ -5,31 +5,32 @@ $(function() {
   var showTable = document.getElementById("showTable");
 
   //Add new brands to the database using POST.
-$("#addBtn").on("click",function(){
-var brand = document.getElementById("inputBrand");
-var color = document.getElementById("inputColor");
-var size = document.getElementById("inputSize");
-var instock = document.getElementById("inputInstock");
-var price = document.getElementById("inputPrice");
+  $("#addBtn").on("click", function() {
+    var brand = document.getElementById("inputBrand");
+    var color = document.getElementById("inputColor");
+    var size = document.getElementById("inputSize");
+    var instock = document.getElementById("inputInstock");
+    var price = document.getElementById("inputPrice");
 
     var stock = {
       brand: brand.value,
       color: color.value,
       size: size.value,
       in_stock: instock.value,
-      price: price.value
+      price: price.value,
+
     }
     $.ajax({
       type: "POST",
       data: stock,
       dataType: "aplication/json",
       url: url,
-      success: function(data){
+      success: function(data) {
         showTable.innerHTML = compiledTable({
-          shoes:  stock
+          shoes: stock
         })
       },
-      error: function(error){
+      error: function(error) {
         alert("You will see the result!!")
       }
     })

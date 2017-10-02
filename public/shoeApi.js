@@ -12,7 +12,6 @@ $(function() {
     var instock = document.getElementById("inputInstock").value;
     var price = document.getElementById("inputPrice").value;
 
-
     if(brand == null || brand.length == 0, color == null || color.length == 0, size == null || size.length == 0 || instock == null || instock.length == 0, price == null || price.length == 0) {
       alert("Please fill all required fields")
       return false;

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const mongoURL = process.env.MONGO_DB_URL || 'mongodb://localhost/brands'
+const mongoURL = process.env.MONGO_DB_URL || 'mongodb://localhost/brands';
 
-// mongoose.Promise = global.Promise;
 mongoose.connect(mongoURL, {
   useMongoClient: true
 }, function(err) {

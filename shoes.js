@@ -9,7 +9,7 @@ module.exports = function(models) {
       size: newshoes.size,
       price: newshoes.price,
       in_stock: newshoes.in_stock,
-      price: newshoes.price
+      price: newshoes
     }, function(err, result) {
       if (err) {
         return next(err)

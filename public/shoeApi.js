@@ -1,5 +1,5 @@
 $(function() {
-  var url = "http://localhost:3000/shoes";
+  var url = "http://localhost:5000/shoes";
   var shoesTable = document.getElementById("shoesTable").innerHTML;
   var compiledTable = Handlebars.compile(shoesTable);
   var showTable = document.getElementById("showTable");

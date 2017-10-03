@@ -16,7 +16,6 @@ $(function() {
       alert("Please fill all required fields")
       return false;
     }
-
     var stock = {
       brand: brand,
       color: color,

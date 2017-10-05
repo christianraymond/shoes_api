@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const mongoURL = process.env.MONGO_DB_URL || 'mongodb://localhost/brands';
-
+console.log("MongURL ", mongoURL);
 mongoose.connect(mongoURL, {
   useMongoClient: true
 }, function(err) {

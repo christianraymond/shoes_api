@@ -16,7 +16,7 @@ $(function() {
     var instock = document.getElementById("inputInstock").value;
     var price = document.getElementById("inputPrice").value;
 
-    if (brand == null || brand.length == 0, color == null || color.length == 0, size == null || size.length == 0 || instock == null || instock.length == 0, price == null || price.length == 0) {
+    if (brand == null || brand.length == 0 || color == null || color.length == 0 || size == null || size.length == 0 || instock == null || instock.length == 0 || price == null || price.length == 0) {
       alert("Please fill all required fields")
       return false;
     }
@@ -46,6 +46,7 @@ $(function() {
     })
   });
   //Get all brand from the database.
+  function allshoes(){
   $.ajax({
     type: "GET",
     url: "http://localhost:3000/shoes",
@@ -57,42 +58,69 @@ $(function() {
     error: function(error) {
       alert("Hello error")
     },
-  });
+  })
+  };
 
-    var uniQbrand = [];
-    var uniQbrandMap = {};
-  for (var x = 0; x < data.length; x++){
-    var b = data[x].brand;
-    if (uniQbrandMap[b] == undefined) {
-      uniQbrandMap = b;
-      uniQbrand.push(b)
+function filterDropdown(){
+ var brand = document.querySelector(".brandName").value;
+  $.ajax({
+  type: "GET",
+  url: "http://localhost:3000/shoes/filterDropdown",
+  success: function(result){
+    filteredData.innerHTML = compiledTable({
+      // brand: result.brand.sort(),
+      // size: result.size.sort(function(a, b){
+      //   return a - b
+      // })
+    })
     }
-    var foundBrand = false;
-  }
-    var uniQcolor = [];
-    var uniQcolorMap = {};
-
-  for(x = 0; x < data.length; x++){
-     var c = data[x].color;
-     if (uniQcolorMap[c] == undefined) {
-       uniQcolorMap = c;
-       uniQcolor.push(c)
-     }
-     var foundColor = false;
-  }
-
-  var uniQsize = [];
-  var uniQsizeMap = {};
-    for(var x = 0; x < data.length; x++){
-      var s = data[x].size;
-      if(uniQsizeMap[s] == undefined){
-        uniQsizeMap = s;
-        uniQsize.push(s)
+  })
+}
+  //Filter shoes by brandByName
+  function filterbrand(branName){
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/shoes/brand " + branName,
+      success:function(brand){
+        dontshownow.innerHTML = compiledTable({
+          shoes: brand
+        })
+      },
+      error: function(error){
+        alert('error')
       }
-    var sizeName = document.querySelector(".brandName");
-    var compile = Handlebars.compile("sizeName");
-
+    })
+  }
+  //Filter shoes by brandsize
+  function filtersize(brandSize){
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/shoes/size" + brandSize,
+      success:function(size){
+        showTable.innerHTML = compiledTable({
+          shoes: size
+        })
+      },
+      error: function(error){
+        alert("error")
+      }
+    })
+  }
+//Filter brandAndsize
+function brandAndsize(brandName, brandSize){
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/shoes/brand " + brandName + "/size" + brandSize,
+    success: function(data){
+      showTable.innerHTML = compiledTable({
+        shoes: data
+      });
     }
-    var foundSize = false;
+  });
+ }
+ filterDropdown();
+ allshoes()
+ $("#searchBtn").on("click", function(){
 
-});
+ })
+})

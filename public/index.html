@@ -69,13 +69,6 @@
     {{/each}}
   </select>
 
-    <select class="brandColor">
-      <option value="">Select color here...</option>
-       {{#each color}}
-        <option>{{this}}</option>
-    {{/each}}
-  </select>
-
     <select class="brandSize">
       <option value="">Select size here...</option>
        {{#each size}}
@@ -130,6 +123,7 @@
    <div class="col-lg-2">
 </div>
 <div class="col-lg-5" id="showTable"></div>
+<div class="col-lg-5" id="filteredData"></div>
 </div>
   <script src="shoeApi.js" charset="utf-8"></script>
 </body>

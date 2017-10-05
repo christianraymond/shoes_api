@@ -1,5 +1,5 @@
 body{
-  background-color: #281812;
+  background-color: #272818;
 }
 
 table, td, th {
@@ -41,6 +41,17 @@ hr {
 .list-group-item {
     padding: 1px;
 }
+
+select {
+    border-radius: 2px;
+    height: 33px
+}
+
+.filteringData{
+  position: absolute;
+  padding: -30px;
+}
+
 
 
     /* Remove the navbar's default margin-bottom and rounded borders */

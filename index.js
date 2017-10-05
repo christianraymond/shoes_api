@@ -27,7 +27,7 @@ app.engine('handlebars', exphds({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res){
-  res.render('./index.html')
+  res.render('home')
 });
 //create an GET route that list all shoes in stock.
 app.get('/shoes', shoesRoute.displayAllBrandFunc);
@@ -44,7 +44,7 @@ app.post('/shoes/sold/brand/:id/amount/:amount', shoesRoute.findOneAndUpdate);
 //create a POST route that updates the stock whenever the shoe is added, stock should increase.
 app.post('/shoes/addBrand/brand/:id/amount/:amount', shoesRoute.addNewShoeToStock);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, function(){
   console.log('App running on:http://localhost:'+ port);
 });

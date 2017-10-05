@@ -6,10 +6,9 @@ module.exports = function(models) {
     models.create({
       brand: newshoes.brand,
       color: newshoes.color,
-      size: newshoes.size,
-      price: newshoes.price,
-      in_stock: newshoes.in_stock,
-      price: newshoes
+      size: Number(newshoes.size),
+      price: Number(newshoes.price),
+      in_stock: Number(newshoes.in_stock),
     }, function(err, result) {
       if (err) {
         return next(err)

@@ -62,12 +62,14 @@ $(function() {
   };
 
 function filterDropdown(){
- var brand = document.querySelector(".brandName").value;
+  var brand = document.querySelector(".brandName").value;
+  var size = document.querySelector(".brandSize").value;
+  alert(brand);
   $.ajax({
   type: "GET",
   url: "/shoes/filterDropdown",
   success: function(result){
-    filteredData.innerHTML = compiledTable({
+    showTable.innerHTML = compiledTable({
       // brand: result.brand.sort(),
       // size: result.size.sort(function(a, b){
       //   return a - b
@@ -82,7 +84,7 @@ function filterDropdown(){
       type: "GET",
       url: "/shoes/brand " + branName,
       success:function(brand){
-        dontshownow.innerHTML = compiledTable({
+        showTable.innerHTML = compiledTable({
           shoes: brand
         })
       },

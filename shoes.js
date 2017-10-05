@@ -64,6 +64,49 @@ module.exports = function(models) {
     })
   }
 
+  function dropdownOutput(req, res, next) {
+    models.find({}, function(err, result) {
+        if(err){
+          return next(err)
+        }else {
+
+      var uniqueBrand = [];
+      var mapBrand = {};
+
+      for (var x = 0; x < result.length; x++) {
+        var brandName = result[x];
+        if (mapBrand[brandName.brand] === undefined) {
+          mapBrand[brandName.brand] = brandName.brand;
+          uniqueBrand.push(
+          brandName.brand
+          );
+        }
+      }
+      var uniqueSize = [];
+      var mapSize = {};
+
+      for (var i = 0; i < result.length; i++) {
+        var brandSize = result[i];
+        if (mapSize[brandSize.size] === undefined) {
+          mapSize[brandSize.size] = brandSize.size;
+          uniqueSize.push(brandSize.size);
+        }
+        res.json(result)
+      }
+      }
+
+      // return uniqueSize.sort(function(s1, s2) {
+      //   if (s1.size < s2.size) {
+      //     return -1
+      //   }
+      //   if (s1.size > s2.size) {
+      //     return 1
+      //   }
+      //   return 0;
+      // })
+    })
+  }
+
   function findOneAndUpdate(req, res, next) {
     const id = req.params.id;
     const amount = req.params.amount;
@@ -115,6 +158,7 @@ module.exports = function(models) {
     listSpecificBrandSize,
     listSpecificBrandAndSize,
     findOneAndUpdate,
-    addNewShoeToStock
+    addNewShoeToStock,
+    dropdownOutput
   }
 }

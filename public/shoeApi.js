@@ -32,7 +32,7 @@ $(function() {
     $.ajax({
       data: JSON.stringify(stock),
       dataType: "aplication/json",
-      url: "http://localhost:3000/shoes",
+      url: "/shoes",
       type: "POST",
       contentType: 'application/json; charset=utf-8',
       success: function(data) {
@@ -49,7 +49,7 @@ $(function() {
   function allshoes(){
   $.ajax({
     type: "GET",
-    url: "http://localhost:3000/shoes",
+    url: "/shoes",
     success: function(data) {
       showTable.innerHTML = compiledTable({
         Shoes: data
@@ -65,7 +65,7 @@ function filterDropdown(){
  var brand = document.querySelector(".brandName").value;
   $.ajax({
   type: "GET",
-  url: "http://localhost:3000/shoes/filterDropdown",
+  url: "/shoes/filterDropdown",
   success: function(result){
     filteredData.innerHTML = compiledTable({
       // brand: result.brand.sort(),
@@ -80,7 +80,7 @@ function filterDropdown(){
   function filterbrand(branName){
     $.ajax({
       type: "GET",
-      url: "http://localhost:3000/shoes/brand " + branName,
+      url: "/shoes/brand " + branName,
       success:function(brand){
         dontshownow.innerHTML = compiledTable({
           shoes: brand
@@ -95,7 +95,7 @@ function filterDropdown(){
   function filtersize(brandSize){
     $.ajax({
       type: "GET",
-      url: "http://localhost:3000/shoes/size" + brandSize,
+      url: "/shoes/size" + brandSize,
       success:function(size){
         showTable.innerHTML = compiledTable({
           shoes: size
@@ -110,7 +110,7 @@ function filterDropdown(){
 function brandAndsize(brandName, brandSize){
   $.ajax({
     type: "GET",
-    url: "http://localhost:3000/shoes/brand " + brandName + "/size" + brandSize,
+    url: "/shoes/brand " + brandName + "/size" + brandSize,
     success: function(data){
       showTable.innerHTML = compiledTable({
         shoes: data

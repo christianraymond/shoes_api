@@ -91,19 +91,19 @@ module.exports = function(models) {
           mapSize[brandSize.size] = brandSize.size;
           uniqueSize.push(brandSize.size);
         }
-        res.json(result)
       }
-      }
+      res.json({uniqueSize, uniqueBrand});
 
-      // return uniqueSize.sort(function(s1, s2) {
-      //   if (s1.size < s2.size) {
-      //     return -1
-      //   }
-      //   if (s1.size > s2.size) {
-      //     return 1
-      //   }
-      //   return 0;
-      // })
+      return uniqueSize.sort(function(s1, s2) {
+        if (s1.size < s2.size) {
+          return -1
+        }
+        if (s1.size > s2.size) {
+          return 1
+        }
+        return 0;
+      })
+    }
     })
   }
 
@@ -122,16 +122,16 @@ module.exports = function(models) {
       }
       res.send(result)
     });
-    console.log('Sold a shoe!');
-    if (result.in_stock < 1) {
-      result.remove(function(err, check) {
-        if (err) {
-          return next(err)
-        }
-        console.log(check.brand + ' size ' + check.size + ', ' + check.color + ' is sold out!');
-      })
-    }
-    res.send(result.brand + ' size ' + result.size + ', ' + result.color + 'have been sold for R' + result.price + '. Avail in store: ' + result.in_stock);
+    // console.log('Sold a shoe!');
+    // if (result.in_stock < 1) {
+    //   result.remove(function(err, check) {
+    //     if (err) {
+    //       return next(err)
+    //     }
+    //     console.log(check.brand + ' size ' + check.size + ', ' + check.color + ' is sold out!');
+    //   })
+    // }
+    // res.send(result.brand + ' size ' + result.size + ', ' + result.color + 'have been sold for R' + result.price + '. Avail in store: ' + result.in_stock);
   }
 
   function addNewShoeToStock(req, res, next) {

@@ -3,10 +3,34 @@ $(function() {
   var compiledTable = Handlebars.compile(shoesTable);
   var showTable = document.getElementById("showTable");
 
-  //Filtering shoes by brandName,brandColor,brandSize.
-  // var filteringData = document.getElementById("filteringData");
-  // var filteredData = Handlebars.compile(filteringData);
-  // var displayResult = document.getElementsByClassName('displayResult');
+  var brandTemp = document.getElementById("dropdownOutput").innerHTML;
+  var brandAndsize = Handlebars.compile(brandTemp);
+  var dropDowns = document.getElementById("filteredData");
+
+$.ajax({
+  type:"GET",
+  url: "/shoes/filterDropdown",
+  success: function(diplicate){
+    dropDowns.innerHTML = brandAndsize({
+      brand: diplicate.uniqueBrand
+    })
+  }, error: function(){
+    alert("error")
+  }
+});
+
+$.ajax({
+  type: "GET",
+  url: "/shoes/filterDropdown",
+  success: function(sizediplicate){
+    dropDowns.innerHTML = brandAndsize({
+      size: sizediplicate.uniqueSize
+    })
+  }, error: function(){
+    alert("error")
+  }
+})
+
 
   //Add new brands to the database using POST.
   $("#addBtn").on("click", function() {
@@ -37,7 +61,7 @@ $(function() {
       contentType: 'application/json; charset=utf-8',
       success: function(data) {
         showTable.innerHTML = compiledTable({
-          shoes: stock
+          Shoes: data
         })
       },
       error: function(error) {
@@ -46,83 +70,44 @@ $(function() {
     })
   });
   //Get all brand from the database.
-  function allshoes(){
   $.ajax({
     type: "GET",
     url: "/shoes",
-    success: function(data) {
+    success: function(allShoes){
       showTable.innerHTML = compiledTable({
-        Shoes: data
+        Shoes: allShoes
       })
-    },
-    error: function(error) {
-      alert("Hello error")
-    },
+    }, error: function(error){
+      alert("All brands")
+    }
   })
-  };
 
-function filterDropdown(){
-  var brand = document.querySelector(".brandName").value;
-  var size = document.querySelector(".brandSize").value;
-  alert(brand);
-  $.ajax({
-  type: "GET",
-  url: "/shoes/filterDropdown",
-  success: function(result){
-    showTable.innerHTML = compiledTable({
-      // brand: result.brand.sort(),
-      // size: result.size.sort(function(a, b){
-      //   return a - b
-      // })
-    })
-    }
-  })
-}
-  //Filter shoes by brandByName
-  function filterbrand(branName){
-    $.ajax({
-      type: "GET",
-      url: "/shoes/brand " + branName,
-      success:function(brand){
-        showTable.innerHTML = compiledTable({
-          shoes: brand
-        })
-      },
-      error: function(error){
-        alert('error')
-      }
-    })
-  }
-  //Filter shoes by brandsize
-  function filtersize(brandSize){
-    $.ajax({
-      type: "GET",
-      url: "/shoes/size" + brandSize,
-      success:function(size){
-        showTable.innerHTML = compiledTable({
-          shoes: size
-        })
-      },
-      error: function(error){
-        alert("error")
-      }
-    })
-  }
-//Filter brandAndsize
-function brandAndsize(brandName, brandSize){
-  $.ajax({
-    type: "GET",
-    url: "/shoes/brand " + brandName + "/size" + brandSize,
-    success: function(data){
-      showTable.innerHTML = compiledTable({
-        shoes: data
-      });
-    }
-  });
- }
- filterDropdown();
- allshoes()
  $("#searchBtn").on("click", function(){
+var brandName = document.querySelector('.brandName').value;
+var brandSize = document.querySelector('.brandSize').value;
+$.ajax({
+  type: "GET",
+  url: "/shoes/brand/" + brandName,
+  success:function(shoeName){
+    showTable.innerHTML = compiledTable({
+      Shoes: shoeName
+    })
+  },
+  error:function(){
+    alert("Oops, Select something!!");
+  }
+})
 
+$.ajax({
+  type: "GET",
+  url: "/shoes/size" + brandSize,
+  success: function(sizeNum){
+    showTable.innerHTML = compiledTable({
+      Shoes: sizeNum
+    })
+  }, error: function(error){
+    alert("Select something for size")
+  }
+})
  })
 })

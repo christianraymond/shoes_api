@@ -86,7 +86,6 @@ $.ajax({
   })
 
  $("#searchBtn").on("click", function(){
-
 var brandSize = document.querySelector('.brandSize').value;
 var brandName = document.querySelector('.brandName').value;
 
@@ -98,9 +97,9 @@ $.ajax({
       Shoes: shoeName
     })
   },
-  error:function(error){
-    alert(error)
-  }
+  // error:function(error){
+  //   alert()
+  // }
 })
 
 $.ajax({
@@ -110,9 +109,10 @@ $.ajax({
     showTable.innerHTML = compiledTable({
       Shoes: sizeNum
     })
-  }, error: function(error){
-    alert("error")
-  }
+  },
+  //  error: function(error){
+  //   alert("error")
+  // }
 })
  })
 })

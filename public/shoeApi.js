@@ -7,6 +7,7 @@ $(function() {
   var brandAndsize = Handlebars.compile(brandTemp);
   var dropDowns = document.getElementById("filteredData");
 
+
 $.ajax({
   type:"GET",
   url: "/shoes/filterDropdown",
@@ -19,18 +20,21 @@ $.ajax({
   }
 });
 
+var dropdownsize = document.getElementById("dropdownSize").innerHTML;
+var compilesize = Handlebars.compile(dropdownsize);
+var displaysize = document.getElementById("dropdownSize");
+
 $.ajax({
   type: "GET",
   url: "/shoes/filterDropdown",
   success: function(sizediplicate){
-    dropDowns.innerHTML = brandAndsize({
+    displaysize.innerHTML = compilesize({
       size: sizediplicate.uniqueSize
     })
   }, error: function(){
     alert("error")
   }
 })
-
 
   //Add new brands to the database using POST.
   $("#addBtn").on("click", function() {
@@ -83,8 +87,10 @@ $.ajax({
   })
 
  $("#searchBtn").on("click", function(){
-var brandName = document.querySelector('.brandName').value;
+
 var brandSize = document.querySelector('.brandSize').value;
+var brandName = document.querySelector('.brandName').value;
+
 $.ajax({
   type: "GET",
   url: "/shoes/brand/" + brandName,
@@ -93,8 +99,8 @@ $.ajax({
       Shoes: shoeName
     })
   },
-  error:function(){
-    alert("Oops, Select something!!");
+  error:function(error){
+    alert("Oops")
   }
 })
 
@@ -106,7 +112,7 @@ $.ajax({
       Shoes: sizeNum
     })
   }, error: function(error){
-    alert("Select something for size")
+    alert("Select size")
   }
 })
  })

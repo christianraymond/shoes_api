@@ -7,6 +7,9 @@ $(function() {
   var brandAndsize = Handlebars.compile(brandTemp);
   var dropDowns = document.getElementById("filteredData");
 
+  var dropdownsize = document.getElementById("dropdownSizeTemplate").innerHTML;
+  var compilesize = Handlebars.compile(dropdownsize);
+  var displaysize = document.getElementById("dropdownSize");
 
 $.ajax({
   type:"GET",
@@ -19,10 +22,6 @@ $.ajax({
     alert("error")
   }
 });
-
-var dropdownsize = document.getElementById("dropdownSize").innerHTML;
-var compilesize = Handlebars.compile(dropdownsize);
-var displaysize = document.getElementById("dropdownSize");
 
 $.ajax({
   type: "GET",
@@ -94,25 +93,25 @@ var brandName = document.querySelector('.brandName').value;
 $.ajax({
   type: "GET",
   url: "/shoes/brand/" + brandName,
-  success:function(shoeName){
+  success: function(shoeName){
     showTable.innerHTML = compiledTable({
       Shoes: shoeName
     })
   },
   error:function(error){
-    alert("Oops")
+    alert(error)
   }
 })
 
 $.ajax({
   type: "GET",
-  url: "/shoes/size" + brandSize,
+  url: "/shoes/size/" + brandSize,
   success: function(sizeNum){
     showTable.innerHTML = compiledTable({
       Shoes: sizeNum
     })
   }, error: function(error){
-    alert("Select size")
+    alert("error")
   }
 })
  })

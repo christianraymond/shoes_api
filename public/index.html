@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Shoes-Api</title>
   <meta charset="utf-8">
   <script-src 'self' http?>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="shoeApi.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="handlebars-v4.0.5.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="shoeApi.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="handlebars-v4.0.5.js"></script>
 </head>
 
 <bodgy class="bg-warnib">
@@ -24,7 +25,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class=""><a href="">Home</a></li>
+          <li class=""><a href="#home">Home</a></li>
           <li class=""><a href="">All available brands</a></li>
           <li><a href="">Admin add stocks here</a></li>
         </ul>
@@ -34,12 +35,9 @@
       </div>
     </div>
   </nav>
-  <h2>SHOE API</h2>
 
-    <div class="col-lg-5" id="filteredData"></div>
-    <div class="col-lg-5" id="dropdownSize"></div>
-
-    <script id="shoesTable" type="text/x-handlebars-template">
+  <h1> SHoes Api</h1>
+  <script id="shoesTable" type="text/x-handlebars-template">
     <table class="table table-hover" align="center">
       <tbody>
         <tr class="bg-success">
@@ -61,15 +59,15 @@
           <button class=" btn btn-warning" value={{_id}} class="btn btn-primary" id="buyShoe">Buy</button>
         </form>
       </div> -->
-    </tr>
-  {{/each}}
+        </tr>
+        {{/each}}
       </tbody>
     </table>
   </script>
 
 
   <script id="dropdownSizeTemplate" type="text/x-handlebars-template">
-      <select class="brandSize">
+    <select class="brandSize">
         <option value="">Select size here...</option>
          {{#each size}}
           <option>{{this}}</option>
@@ -77,22 +75,30 @@
       </select>
   </script>
 
-<script id="dropdownOutput" type="text/x-handlebars-template">
+  <script id="dropdownOutput" type="text/x-handlebars-template">
     <select class="brandName">
       <option value="">Select brand here...</option>
        {{#each brand}}
         <option>{{this}}</option>
     {{/each}}
   </select>
-</script>
-<button type="submit" class="btn btn-primary btn-md" id="searchBtn">Search</button>
+  </script>
 
-<br></br>
+  <br></br>
   <div class="container">
     <br><br>
     <form class="form-horizontal col-lg-5 form-group">
-            <h3>Adding New Stocks</h3>
-          <br>
+      <h3>Adding New Stocks</h3>
+      <br>
+
+      <ul class="nav nav-tabs">
+        <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Add Stocks</a></li>
+        <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Filter Stocks</a></li>
+        </li>
+      </ul>
+
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade" id="home"><br>
           <!-- Brand -->
           <div class=" row">
             <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
@@ -117,7 +123,7 @@
           <br>
           <!-- instock -->
           <div class="row">
-             <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
+            <div class="col-lg-6 col-md-2 col-sm-3 col-xs-6">
               <input type="number" class="form-control input-sm" id="inputInstock" placeholder="Type stock here..." min="1" value="">
             </div>
 
@@ -127,12 +133,18 @@
               <!-- <button type="button" class="btn btn-primary btn-sm" id="{{_id}}">Purchase</button> -->
             </div>
           </div>
-      </form>
-     <br>
-     <div class="col-lg-5" id="showTable"></div>
-   <div class="col-lg-2">
+    </form>
+  </div>
+
+    <div class="tab-pane fade active in" id="profile"><br>
+      <div class="col-lg-5" id="filteredData"></div>
+      <div class="col-lg-5" id="dropdownSize"></div>
+      <button type="submit" class="btn btn-primary btn-md" id="searchBtn">Search</button>
+    </div>
 </div>
-</div>
+    <div class="col-lg-5" id="showTable"></div>
+  </div>
+
   <script src="shoeApi.js" charset="utf-8"></script>
-</body>
+  </body>
 </html>

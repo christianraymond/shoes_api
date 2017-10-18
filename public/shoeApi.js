@@ -11,6 +11,7 @@ $(function() {
   var compilesize = Handlebars.compile(dropdownsize);
   var displaysize = document.getElementById("dropdownSize");
 
+  //Get specific single brand dropdown values.
   $.ajax({
     type: "GET",
     url: "/shoes/filterDropdown",
@@ -23,7 +24,7 @@ $(function() {
       alert("error")
     }
   });
-
+  //Get specific single size dropdowns values.
   $.ajax({
     type: "GET",
     url: "/shoes/filterDropdown",
@@ -85,17 +86,9 @@ $(function() {
         type: 'POST',
         dataType: 'application/json',
         success: function(data) {},
-        error: function(error) {
-        }
+        error: function(error) {}
       })
     });
-
-
-
-
-
-
-
 
 
   });
@@ -117,30 +110,51 @@ $(function() {
     var brandSize = document.querySelector('.brandSize').value;
     var brandName = document.querySelector('.brandName').value;
 
-    $.ajax({
-      type: "GET",
-      url: "/shoes/brand/" + brandName,
-      success: function(shoeName) {
-        showTable.innerHTML = compiledTable({
-          Shoes: shoeName
-        })
-      },
-      // error:function(error){
-      //   alert()
-      // }
-    })
+     if(brandName !== "" && brandSize !== ""){
+       $.ajax({
+         type: "GET",
+         url: "shoes/brand/" + brandName + "/size/" + brandSize,
+         success: function(filterBoth) {
+           if(filterBoth.length === 0){
+             showTable.innerHTML = "Query Not Found!"
+           } else {
+             showTable.innerHTML = compiledTable({
+               Shoes: filterBoth
+             })
+           }
+         }
+        //  error:function(error){
+        //    alert("Not FOund@")
+        //  }
+       })
+     } else {
 
-    $.ajax({
-      type: "GET",
-      url: "/shoes/size/" + brandSize,
-      success: function(sizeNum) {
-        showTable.innerHTML = compiledTable({
-          Shoes: sizeNum
-        })
-      },
-      //  error: function(error){
-      //   alert("error")
-      // }
-    })
+       $.ajax({
+         type: "GET",
+         url: "/shoes/brand/" + brandName,
+         success: function(shoeName) {
+           showTable.innerHTML = compiledTable({
+             Shoes: shoeName
+           })
+         },
+         // error:function(error){
+         //   alert()
+         // }
+       })
+
+       $.ajax({
+         type: "GET",
+         url: "/shoes/size/" + brandSize,
+         success: function(sizeNum) {
+           showTable.innerHTML = compiledTable({
+             Shoes: sizeNum
+           })
+         },
+         //  error: function(error){
+         //   alert("error")
+         // }
+       })
+     }
+
   })
 })

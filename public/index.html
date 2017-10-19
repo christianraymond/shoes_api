@@ -46,20 +46,21 @@
           <th>Price</th>
           <th>Size</th>
           <th>Stock</th>
+          <th>Buy</th>
         </tr>
+        <tr class="content" data-type="data">
         {{#each Shoes}}
-        <tr>
           <td>{{brand}}</td>
           <td>{{color}}</td>
           <td>R{{price}}</td>
           <td>{{size}}</td>
           <td>{{in_stock}}</td>
-          <!-- <div class=" popup col-5">
-            <form class=" form-group" action="index.html" method="post">
-          <button class=" btn btn-warning" value={{_id}} class="btn btn-primary" id="buyShoe">Buy</button>
-        </form>
-      </div> -->
+          <td>
+          <div class=" popup col-3">
+          <button class=" btn btn-danger" value={{_id}} class="btn btn-danger" id="buyShoe">Buy</button></td>
         </tr>
+      </div>
+    </tr>
         {{/each}}
       </tbody>
     </table>

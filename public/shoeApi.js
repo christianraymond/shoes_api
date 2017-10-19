@@ -74,22 +74,6 @@ $(function() {
         return ("You about to see the result")
       }
     })
-    //Ajax call to buy shoes
-    $('#showInfo').on('click', function(e) {
-
-      var table = document.getElementById("template").innerHTML;
-      var theTemplate = Handlebars.compile(table);
-      var shoeId = e.target.value;
-
-      $.ajax({
-        url: '/shoes/sold/' + shoeId,
-        type: 'POST',
-        dataType: 'application/json',
-        success: function(data) {},
-        error: function(error) {}
-      })
-    });
-
 
   });
   //Get all brand from the database.
@@ -110,51 +94,67 @@ $(function() {
     var brandSize = document.querySelector('.brandSize').value;
     var brandName = document.querySelector('.brandName').value;
 
-     if(brandName !== "" && brandSize !== ""){
-       $.ajax({
-         type: "GET",
-         url: "shoes/brand/" + brandName + "/size/" + brandSize,
-         success: function(filterBoth) {
-           if(filterBoth.length === 0){
-             showTable.innerHTML = "Query Not Found!"
-           } else {
-             showTable.innerHTML = compiledTable({
-               Shoes: filterBoth
-             })
-           }
-         }
+    if (brandName !== "" && brandSize !== "") {
+      $.ajax({
+        type: "GET",
+        url: "shoes/brand/" + brandName + "/size/" + brandSize,
+        success: function(filterBoth) {
+          if (filterBoth.length === 0) {
+            showTable.innerHTML = "Query Not Found!"
+          } else {
+            showTable.innerHTML = compiledTable({
+              Shoes: filterBoth
+            })
+          }
+        }
         //  error:function(error){
         //    alert("Not FOund@")
         //  }
-       })
-     } else {
+      })
+    } else {
 
-       $.ajax({
-         type: "GET",
-         url: "/shoes/brand/" + brandName,
-         success: function(shoeName) {
-           showTable.innerHTML = compiledTable({
-             Shoes: shoeName
-           })
-         },
-         // error:function(error){
-         //   alert()
-         // }
-       })
+      $.ajax({
+        type: "GET",
+        url: "/shoes/brand/" + brandName,
+        success: function(shoeName) {
+          showTable.innerHTML = compiledTable({
+            Shoes: shoeName
+          })
+        },
+        // error:function(error){
+        //   alert()
+        // }
+      })
 
-       $.ajax({
-         type: "GET",
-         url: "/shoes/size/" + brandSize,
-         success: function(sizeNum) {
-           showTable.innerHTML = compiledTable({
-             Shoes: sizeNum
-           })
-         },
-         //  error: function(error){
-         //   alert("error")
-         // }
-       })
-     }
+      $.ajax({
+        type: "GET",
+        url: "/shoes/size/" + brandSize,
+        success: function(sizeNum) {
+          showTable.innerHTML = compiledTable({
+            Shoes: sizeNum
+          })
+        },
+        //  error: function(error){
+        //   alert("error")
+        // }
+      })
+    }
+  })
+  $("#showTable").on("click", function(e) {
+    var shoeId = e.target.value;
+    $.ajax({
+      type: "POST",
+      url: "/shoes/sold/brand/" + shoeId + "/amount/" + 1,
+      success: function(soldShoe) {
+        if (soldShoe.isOk == false) {
+          showTable.innerHTML = compiledTable({
+            Shoes: soldShoe
+          })
+        }
+        async: false
+      }
+    })
 
   })
+
 })

@@ -140,18 +140,16 @@ $(function() {
       })
     }
   })
-  $("#showTable").on("click", function(e) {
+  $("#showTable").click(function(e) {
     var shoeId = e.target.value;
     $.ajax({
       type: "POST",
       url: "/shoes/sold/brand/" + shoeId + "/amount/" + 1,
       success: function(soldShoe) {
-        if (soldShoe.isOk == false) {
-          showTable.innerHTML = compiledTable({
-            Shoes: soldShoe
-          })
+        if (soldShoe.isOk == true) {
+          showTable.innerHTML = compiledTable({Shoes: soldShoe})
         }
-        async: false
+        soldShoe.reload(true);
       }
     })
 

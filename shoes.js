@@ -117,11 +117,16 @@ module.exports = function(models) {
         in_stock: -amount
       }
     }, function(err, result) {
-      if (err) {
-        return next(err)
-      }
+        if(result.in_stock < 1){
+          result.remove( function(err, inspect){
+            if(err){
+              return next(err)
+            }
+          })
+        }
       res.send(result)
     });
+  }
   //   if (result.in_stock < 1) {
   //     result.remove(function(err, check) {
   //       if (err) {
@@ -131,7 +136,7 @@ module.exports = function(models) {
   //     })
   //   }
   //   res.send(result.brand + ' size ' + result.size + ', ' + result.color + 'have been sold for R' + result.price + '. Avail in store: ' + result.in_stock);
-  }
+  // }
 
   function addNewShoeToStock(req, res, next) {
     const id = req.params.id;

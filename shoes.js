@@ -77,11 +77,19 @@ module.exports = function(models) {
         var brandName = result[x];
         if (mapBrand[brandName.brand] === undefined) {
           mapBrand[brandName.brand] = brandName.brand;
-          uniqueBrand.push(
-          brandName.brand
-          );
+          uniqueBrand.push(brandName.brand);
         }
+          uniqueBrand.sort(function(a, b){
+            if(a.brand < b.brand){
+              return -1
+            }
+            if(a.brand > b.brand){
+              return 1
+            }
+            return 0;
+          })
       }
+
       var uniqueSize = [];
       var mapSize = {};
 
@@ -91,22 +99,14 @@ module.exports = function(models) {
           mapSize[brandSize.size] = brandSize.size;
           uniqueSize.push(brandSize.size);
         }
+        uniqueSize.sort(function(a, b){
+          return a-b
+        })
       }
       res.json({uniqueSize, uniqueBrand});
-
-      return uniqueSize.sort(function(s1, s2) {
-        if (s1.size < s2.size) {
-          return -1
-        }
-        if (s1.size > s2.size) {
-          return 1
-        }
-        return 0;
-      })
     }
-    })
-  }
-
+  })
+}
   function findOneAndUpdate(req, res, next) {
     const id = req.params.id;
     const amount = req.params.amount;
@@ -122,21 +122,12 @@ module.exports = function(models) {
             if(err){
               return next(err)
             }
+            console.log(inspect.brand + ' size ' + inspect.size + ', ' + inspect.color + ' is sold out!');
           })
         }
-      res.send(result)
+      res.send(result.brand + ' size ' + result.size + ', ' + result.color + 'have beeen sold for R' + result.price + '. Available in stock: ' + result.in_stock);
     });
   }
-  //   if (result.in_stock < 1) {
-  //     result.remove(function(err, check) {
-  //       if (err) {
-  //         return next(err)
-  //       }
-  //       console.log(check.brand + ' size ' + check.size + ', ' + check.color + ' is sold out!');
-  //     })
-  //   }
-  //   res.send(result.brand + ' size ' + result.size + ', ' + result.color + 'have been sold for R' + result.price + '. Avail in store: ' + result.in_stock);
-  // }
 
   function addNewShoeToStock(req, res, next) {
     const id = req.params.id;

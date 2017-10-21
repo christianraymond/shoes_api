@@ -2,53 +2,19 @@ body{
   /*background-color: #272818;*/
 }
 
-#showTable{
-  font: italic;
-}
-
-table, td, th {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-table {
-    border-collapse: collapse;
-    width: 30%;
-    float: right;
-}
-
-th, td {
-    padding: 10px;
-    background-color: white;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-}
-h3 {
-  color: white;
-}
-.navbar {
-    margin-bottom: 50px;
-    border-radius: 0;
-    position: fixed;    /* Set the navbar to fixed position */
-    top: 2px; /* Position the navbar at the top of the page */
-    width: 100%;    /* Full width */
-}
-
-hr {
-    clear: both;
-    visibility: hidden;
-}
-
-.list-group-item {
-    padding: 1px;
-}
-
 select {
     color: 121219;
     border-radius: 2px;
     height: 33px
+}
+.container{
+    display: block;
+  }
+
+#home{
+  position: absolute;
+
+}
+#home{
+   /*background-color: red;*/
 }
